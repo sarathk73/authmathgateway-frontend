@@ -11,6 +11,7 @@
       <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="performOperation('divide')">Divide</button>
     </div>
     <div v-if="result !== null" class="text-lg font-semibold">Result: {{ result }}</div>
+    <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -20,13 +21,24 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      number1: 0,
-      number2: 0,
-      result: null
+      number1: null,
+      number2: null,
+      result: null,
+      errorMessage: ''
     };
   },
   methods: {
     async performOperation(operation) {
+      
+      this.result = null;
+      this.errorMessage = '';
+
+      
+      if (this.number1 === null || this.number2 === null) {
+        this.errorMessage = 'Please fill in both numbers.';
+        return;
+      }
+
       try {
         const response = await axios.post(`http://localhost:3001/api/arithmetic/${operation}`, {
           number1: this.number1,
@@ -38,7 +50,9 @@ export default {
         });
         this.result = response.data.result;
       } catch (error) {
-        console.error(error);
+        this.errorMessage = error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : 'An error occurred. Please try again.';
       }
     }
   }
