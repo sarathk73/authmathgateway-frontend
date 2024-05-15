@@ -1,15 +1,15 @@
 <template>
-  <div class="home flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 py-8">
-    <h1 class="text-4xl font-bold text-center text-gray-900 mb-6">Welcome to the Arithmetic Operations App</h1>
-    <p v-if="!isLoggedIn" class="mb-6 text-gray-700 text-center max-w-md">
+  <div class="home flex flex-col items-center justify-center min-h-screen px-4 py-8 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">
+    <h1 class="text-4xl font-bold text-center text-white mb-6">Welcome to the Arithmetic Operations App</h1>
+    <p v-if="!isLoggedIn" class="mb-6 text-white text-center max-w-md">
       Please log in to perform arithmetic operations.
     </p>
-    <p v-else class="mb-6 text-gray-700 text-center max-w-md">
+    <p v-else class="mb-6 text-white text-center max-w-md">
       Use the form below to perform basic arithmetic operations.
     </p>
     
     <div v-if="!isLoggedIn" class="flex flex-col items-center">
-      <button @click="goToLogin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out mb-4">
+      <button @click="goToLogin" class="bg-white hover:bg-gray-200 text-blue-700 font-bold py-2 px-4 rounded transition duration-300 ease-in-out mb-4">
         Log In
       </button>
     </div>
