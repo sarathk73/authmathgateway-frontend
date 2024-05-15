@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <header>
-      <h1>Arithmetic Operations App</h1>
+  <div id="app" class="flex flex-col min-h-screen font-sans bg-gray-100 text-gray-800">
+    <header class="py-4 bg-blue-600 text-white text-center">
+      <h1 class="text-2xl font-bold m-0">Arithmetic Operations App</h1>
     </header>
-    <main>
+    <main class="flex-1 flex items-center justify-center p-6">
       <router-view />
     </main>
-    <footer>
-      <p>&copy; {{ new Date().getFullYear() }} Copyright © 2024 Sarath. All rights reserved.</p>
+    <footer class="py-4 bg-gray-800 text-white text-center">
+      <p class="m-0">&copy; {{ new Date().getFullYear() }} Copyright © 2024 Sarath. All rights reserved.</p>
     </footer>
   </div>
 </template>
@@ -17,45 +17,3 @@ export default {
   name: 'App'
 }
 </script>
-
-<style>
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-header {
-  padding: 1rem;
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-main {
-  flex: 1;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-footer {
-  padding: 1rem;
-  background-color: #343a40;
-  color: white;
-  text-align: center;
-}
-
-footer p {
-  margin: 0;
-}
-</style>
