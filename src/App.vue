@@ -10,8 +10,9 @@
           </div>
           <div class="flex items-center justify-end gap-3">
             <a 
+              v-if="isAuthenticated"
               class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              href="/login"
+              @click="logout"
             >
               Logout
             </a>
@@ -27,12 +28,24 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    isAuthenticated() {
+      console.log('Checking authentication:', this.$store.getters.isAuthenticated); 
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    logout() {
+      console.log('Logging out'); 
+      this.$store.dispatch('logout');
+      this.$router.push('/login');
+    }
+  }
 }
 </script>
 
 <style scoped>
-
 main {
   margin-top: 4rem; 
 }
