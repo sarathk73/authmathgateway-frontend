@@ -1,14 +1,27 @@
 <template>
   <div id="app" class="flex flex-col min-h-screen font-sans bg-gray-100 text-gray-800">
-    <header class="py-4 bg-blue-600 text-white text-center">
-      <h1 class="text-2xl font-bold m-0">Arithmetic Operations App</h1>
+    <header class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+      <div class="px-4">
+        <div class="flex items-center justify-between">
+          <div class="flex shrink-0">
+            <a aria-current="page" class="flex items-center" href="/">
+              <span class="ml-2 text-xl font-bold">Arithmetic App</span>
+            </a>
+          </div>
+          <div class="flex items-center justify-end gap-3">
+            <a 
+              class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              href="/login"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
     </header>
-    <main class="flex-1 flex items-center justify-center p-6">
+    <main class="flex-1 flex items-center justify-center p-6 mt-20 md:mt-24">
       <router-view />
     </main>
-    <footer class="py-4 bg-gray-800 text-white text-center">
-      <p class="m-0">&copy; {{ new Date().getFullYear() }} Copyright © 2024 Sarath. All rights reserved.</p>
-    </footer>
   </div>
 </template>
 
@@ -17,3 +30,16 @@ export default {
   name: 'App'
 }
 </script>
+
+<style scoped>
+
+main {
+  margin-top: 4rem; 
+}
+
+@media (min-width: 768px) {
+  main {
+    margin-top: 6rem; 
+  }
+}
+</style>
