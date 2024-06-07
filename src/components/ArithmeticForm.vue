@@ -1,17 +1,42 @@
 <template>
-  <div class="flex flex-col items-center space-y-6">
-    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-      <input class="border rounded px-4 py-2 w-full md:w-auto" v-model.number="number1" type="number" placeholder="Number 1" />
-      <input class="border rounded px-4 py-2 w-full md:w-auto" v-model.number="number2" type="number" placeholder="Number 2" />
+  <div class="max-w-md mx-auto mt-20 bg-white rounded-md shadow-md overflow-hidden">
+    <div class="px-6 py-4 bg-gray-900 text-white">
+      <h1 class="text-lg font-bold">Arithmetic Operations</h1>
     </div>
-    <div class="flex flex-wrap justify-center space-x-2">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="performOperation('add')">Add</button>
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" @click="performOperation('subtract')">Subtract</button>
-      <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" @click="performOperation('multiply')">Multiply</button>
-      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="performOperation('divide')">Divide</button>
+    <div class="px-6 py-8">
+      <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2" for="number1">
+          Number 1
+        </label>
+        <input
+          class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="number1"
+          v-model.number="number1"
+          type="number"
+          placeholder="Enter first number"
+        />
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2" for="number2">
+          Number 2
+        </label>
+        <input
+          class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="number2"
+          v-model.number="number2"
+          type="number"
+          placeholder="Enter second number"
+        />
+      </div>
+      <div class="flex flex-wrap justify-center space-x-2 mb-6">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('add')">Add</button>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('subtract')">Subtract</button>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('multiply')">Multiply</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('divide')">Divide</button>
+      </div>
+      <div v-if="result !== null" class="mt-4 text-lg font-semibold">Result: {{ result }}</div>
+      <div v-if="errorMessage" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded relative text-center">{{ errorMessage }}</div>
     </div>
-    <div v-if="result !== null" class="text-lg font-semibold">Result: {{ result }}</div>
-    <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -28,14 +53,23 @@ export default {
     };
   },
   methods: {
-    async performOperation(operation) {
-      
-      this.result = null;
-      this.errorMessage = '';
-
-      
+    validateInputs() {
       if (this.number1 === null || this.number2 === null) {
         this.errorMessage = 'Please fill in both numbers.';
+        return false;
+      }
+      if (this.number2 === 0 && this.currentOperation === 'divide') {
+        this.errorMessage = 'Cannot divide by zero.';
+        return false;
+      }
+      return true;
+    },
+    async performOperation(operation) {
+      this.result = null;
+      this.errorMessage = '';
+      this.currentOperation = operation;
+
+      if (!this.validateInputs()) {
         return;
       }
 
@@ -58,3 +92,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+</style>
