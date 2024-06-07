@@ -3,6 +3,7 @@
 Arithmetic App is a Vue.js-based web application that provides a user-friendly interface for performing basic arithmetic operations securely and efficiently.
 
 ![Arithmetic App Screenshot](/images/a1.png)
+![Arithmetic App Screenshot](/images/a2.png)
 
 ## Features
 
