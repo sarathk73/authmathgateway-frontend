@@ -29,10 +29,10 @@
         />
       </div>
       <div class="flex flex-wrap justify-center space-x-2 mb-6">
-        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('add')">Add</button>
-        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('subtract')">Subtract</button>
-        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('multiply')">Multiply</button>
-        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full transition-colors" @click="performOperation('divide')">Divide</button>
+        <StyledButton text="Add" :onClick="() => performOperation('add')" class="mb-2" />
+        <StyledButton text="Subtract" :onClick="() => performOperation('subtract')" class="mb-2" />
+        <StyledButton text="Multiply" :onClick="() => performOperation('multiply')" class="mb-2" />
+        <StyledButton text="Divide" :onClick="() => performOperation('divide')" class="mb-2" />
       </div>
       <div v-if="result !== null" class="mt-4 text-lg font-semibold">Result: {{ result }}</div>
       <div v-if="errorMessage" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded relative text-center">{{ errorMessage }}</div>
@@ -42,8 +42,12 @@
 
 <script>
 import axios from 'axios';
+import StyledButton from './StyledButton.vue';
 
 export default {
+  components: {
+    StyledButton
+  },
   data() {
     return {
       number1: null,
