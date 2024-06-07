@@ -73,9 +73,9 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      username: '',
+      username: this.$store.getters.username,
       password: '',
-      rememberMe: false,
+      rememberMe: this.$store.getters.rememberMe,
       errorMessage: ''
     };
   },
@@ -83,7 +83,7 @@ export default {
     async login() {
       this.errorMessage = ''; 
 
-     
+      
       if (!this.username.trim() || !this.password.trim()) {
         this.errorMessage = 'Please fill in all the fields.';
         return;
@@ -94,7 +94,7 @@ export default {
           username: this.username,
           password: this.password
         });
-        this.$store.commit('setAccessToken', response.data.accessToken);
+        this.$store.dispatch('login', { token: response.data.accessToken, rememberMe: this.rememberMe, username: this.username });
         this.$router.push('/');
       } catch (error) {
         if (error.response) {
